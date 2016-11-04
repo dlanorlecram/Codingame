@@ -1,0 +1,47 @@
+/**
+ * Auto-generated code below aims at helping you parse
+ * the standard input according to the problem statement.
+ **/
+
+var MESSAGE = readline();
+var input = "";
+var output = "";
+
+for(var j = 0; j < MESSAGE.length; j++){
+    if(MESSAGE[j].match(/[0-9]|\W/g) !== null ){
+        input += "0"+ MESSAGE[j].charCodeAt(0).toString(2);
+    }
+    else{
+        input += MESSAGE[j].charCodeAt(0).toString(2);
+    }
+}
+var CharInit = input.charAt(0);
+
+if ( CharInit == "1" ){
+    output = output.concat("0 0");
+   }
+   else if (CharInit == "0"){
+    output = output.concat("00 0");
+   }
+
+for(var i = 0; i < input.length-1; i++){
+    var next = input.charAt(i+1);
+    var back = input.charAt(i);
+
+    if(back == next) {
+     if ( next == "1" || next == "0"){
+        output = output.concat("0");
+     }
+    }
+    else if(back != next){
+       if ( next == "1" ){
+        output=output.concat(" ");
+        output = output.concat("0 0");
+       }
+       else if (next == "0") {
+        output = output.concat(" ");
+        output = output.concat("00 0");
+       }
+    }
+}
+print(output);
